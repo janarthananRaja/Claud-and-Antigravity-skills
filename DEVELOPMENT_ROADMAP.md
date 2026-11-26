@@ -2,66 +2,65 @@
 
 ## Working model
 
-Develop one skill at a time, targeting one skill per day when its scope and validation effort allow. The cadence is a planning aid, not a release guarantee.
+Develop one skill at a time, aiming for one focused skill per day when its scope and validation allow. The cadence is a target, not a reason to ship unfinished instructions.
 
-A skill moves through:
+Lifecycle:
 
 `Problem discovery -> Specification -> Draft -> Scenario testing -> Revision -> Stable`
 
-Do not start another skill merely to meet the daily target if the current skill has unresolved correctness or safety issues.
+Do not move to the next skill while the current skill has unresolved correctness or safety failures.
 
 ## Day 1 — COPYTHIS
 
-**Problem:** Developers need to migrate components, features, and workflows between projects or platforms without losing behavior or importing unwanted source styling.
+**Problem:** Migrate components, features, and workflows between projects/platforms without losing intended behavior, leaking source styling, or wasting context through repeated discovery.
 
-**Default principle:** Preserve functional behavior; adapt implementation to destination architecture; use destination design and theme unless the developer explicitly requests design migration.
+**Locked defaults:**
+- FUNCTIONAL_ONLY unless design/full migration is explicit.
+- Inspect source and destination before asking consequential questions.
+- Strict behavioral parity; report suspected defects and improvements separately.
+- Support absolute/relative paths and accessible multi-root workspaces.
+- Maintain a task-scoped context ledger and reuse findings until invalidated.
+- Reread only when files changed, evidence conflicts, details are missing, or exact current code is needed.
 
-**Planned coverage:**
-- Source and destination project discovery.
-- Component and dependency tracing.
-- Business logic, conditions, validations, events, state, and API behavior preservation.
+**Work areas:**
+- Source/destination resolution and access limitations.
+- Bounded discovery and dependency tracing.
+- Business rules, conditions, validations, events, state, APIs, and edge cases.
 - Cross-framework and web/mobile adaptation.
-- Source-style isolation and destination design-system reuse.
-- Clarification for consequential ambiguity.
-- Behavioral parity checklist and evidence-based reporting.
-- Minimal file scope and token/context efficiency.
+- Destination theme isolation.
+- Clarification protocol.
+- Behavioral parity tests and evidence-based reporting.
+- Context/token efficiency without reducing correctness.
 
 **Acceptance gates:**
-- Clear prompts activate the skill without redundant questions.
-- Ambiguous source/destination/scope prompts trigger concise clarification.
-- Source business rules and edge cases are mapped before implementation.
-- Styling is not copied in functional-only mode.
-- Destination conventions and existing utilities are reused.
-- Tests or explicit verification evidence support parity claims.
-- Unverified behavior and limitations are reported honestly.
+- Clear prompts do not trigger redundant questions.
+- Ambiguous consequential scope triggers concise clarification.
+- Inaccessible source paths are reported honestly.
+- Relevant files are not repeatedly read without a reason.
+- Findings are reused from a task-scoped ledger.
+- Business behavior is inventoried and mapped.
+- Functional-only mode does not import source styling.
+- Destination conventions and dependencies are reused.
+- Tests or reproducible checks support parity claims.
+- Gaps and deviations are explicit.
 
-**Status:** Planned. Specification and test suite are to be completed before stable release.
+**Status:** Draft. Requires scenario testing in real repositories before stable release.
 
 ## Future skill candidates
 
-These are candidates, not committed release dates. Prioritize based on recurring developer pain and overlap with existing skills.
+These are candidates, not fixed release dates:
 
-1. **debug-first** — reproduce, isolate, and diagnose errors before editing code.
-2. **contextguard** — targeted repository discovery and context/token budgeting.
-3. **safe-refactor** — refactor while preserving externally observable behavior.
-4. **api-contract-keeper** — maintain API contracts across frontend/backend changes.
-5. **testcraft** — derive focused tests from requirements, code paths, and edge cases.
-6. **dependency-audit** — evaluate existing packages before adding or upgrading dependencies.
-7. **ui-consistency** — use a destination design system and shared components consistently.
-8. **security-review** — identify common security risks and validate fixes.
-9. **database-change-safety** — plan schema changes, migrations, and rollback considerations.
-10. **docs-sync** — keep implementation, API docs, and developer documentation aligned.
+1. **debug-first** — reproduce and isolate defects before changing code.
+2. **contextguard** — bounded repository discovery and context/token budgeting.
+3. **safe-refactor** — refactor while preserving observable behavior.
+4. **api-contract-keeper** — prevent frontend/backend contract drift.
+5. **testcraft** — derive focused tests from requirements and code paths.
+6. **dependency-audit** — evaluate existing packages before adding/upgrading.
+7. **ui-consistency** — use destination design systems and shared components.
+8. **security-review** — identify common security risks and verify fixes.
+9. **database-change-safety** — plan schema changes, migrations, and rollback.
+10. **docs-sync** — keep implementation and developer documentation aligned.
 
-## Prioritization rules
+## Prioritization
 
-Evaluate candidate skills by:
-
-- Frequency of the problem.
-- Cost of mistakes.
-- Potential to prevent wasted context and tokens.
-- Clarity of success criteria.
-- Platform compatibility.
-- Overlap with existing skills.
-- Ability to test against realistic examples.
-
-Do not optimize for catalogue size. Optimize for measurable developer value.
+Choose by problem frequency, cost of mistakes, measurable benefit, token/context waste prevented, testability, platform compatibility, and overlap with existing skills. Optimize for developer value, not catalogue size.

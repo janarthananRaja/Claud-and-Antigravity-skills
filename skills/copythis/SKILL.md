@@ -203,3 +203,15 @@ Provide:
 ## Definition of done
 
 The scope is clear; relevant source behavior is inventoried; destination architecture and theme are respected; required functionality is implemented; applicable checks are executed; gaps/deviations are documented; and the developer receives an evidence-based report.
+
+
+## 13. Load supporting files only when needed
+
+Keep this core skill as the entry point. Do not load every reference automatically.
+
+- `references/context-efficient-execution.md`: load when planning discovery, tracking inspected files, or recovering task context.
+- `references/clarification-protocol.md`: load when deciding whether to ask the developer a question.
+- `references/migration-checklist.md`: load for non-trivial migrations and final parity review.
+- `tests/scenario-test-plan.md`: load when validating or improving the skill itself, not during ordinary feature migration.
+
+Use the task context ledger rather than repeatedly reopening references or source files. Load only the supporting material relevant to the current decision.

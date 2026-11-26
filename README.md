@@ -1,89 +1,68 @@
 # Claude & Antigravity Skills
 
-A practical, quality-focused collection of reusable skills for AI-assisted software development with **Claude Code**, **Google Antigravity**, and other compatible agent environments.
+An open collection of reusable, engineering-focused skills for **Claude Code**, **Google Antigravity**, and compatible AI coding agents.
 
-The goal is not to collect prompts for the sake of collecting prompts. This repository develops carefully scoped engineering skills that help AI coding agents understand a task, inspect the codebase, ask useful questions, make safe changes, validate their work, and explain what they changed.
+This project helps agents solve real software-development problems with less duplicated work, better context use, safer code changes, and evidence-based verification.
 
-> **Build one skill at a time. Validate it against real developer problems. Prefer reliable engineering over a large collection of shallow instructions.**
+> **One skill at a time. Real problems. Measurable quality. Less wasted context, not less engineering.**
 
-## Why this repository exists
+## Why this exists
 
-AI-assisted and "vibe-coded" development can be fast, but speed without engineering discipline creates familiar problems:
+AI-assisted development can accelerate delivery, but poorly guided agents can:
+- Guess when requirements are incomplete.
+- Re-read unchanged files and repeat repository discovery.
+- Consume excessive context on broad scans and verbose summaries.
+- Accidentally change business rules during migrations or refactors.
+- Copy components without understanding dependencies.
+- Leak source styling into destination applications.
+- Add duplicate packages or utilities.
+- Claim success without meaningful verification.
 
-- Agents make assumptions when requirements are incomplete.
-- Large, unfocused repository scans consume context and tokens.
-- Existing business rules are accidentally changed during refactoring or migration.
-- Components are copied without understanding their dependencies.
-- Source-project styling leaks into a destination application.
-- Agents introduce duplicate utilities or unnecessary dependencies.
-- Implementations are declared complete without meaningful tests.
-- Long, repetitive explanations obscure what actually changed.
+This repository develops focused skills to reduce these failure modes. Token efficiency means eliminating duplicated work, not skipping necessary reasoning, tests, or safety checks.
 
-This project aims to address these problems through reusable, task-specific skills.
+## What is an agent skill?
 
-## What is a skill?
+A skill is a reusable package of instructions and optional references, templates, examples, or scripts that guides an agent through a specific category of work.
 
-A skill is a reusable package of instructions, references, templates, and (where useful) scripts that teaches an AI agent how to approach a specific category of work.
+A well-designed skill defines its trigger, scope, discovery strategy, decision rules, clarification behavior, execution workflow, verification criteria, and completion report.
 
-A skill should define:
+Skills guide agent behavior; they do not replace tools, permissions, tests, or developer review.
 
-1. **When to use it** — a clear description and activation scope.
-2. **What to inspect** — the minimum relevant files and context.
-3. **How to reason** — decision rules, constraints, and workflows.
-4. **When to clarify** — questions only when important information cannot be inferred.
-5. **How to execute** — safe, repository-aware implementation steps.
-6. **How to verify** — tests, checks, and evidence required.
-7. **How to report** — concise changes, results, and known limitations.
+## Principles
 
-Skills are not a replacement for tools, permissions, tests, or developer judgment. They guide agent behavior; they do not guarantee correctness.
-
-## Design principles
-
-All skills in this repository should follow these principles:
-
-- **Correctness before speed:** do not optimize token usage by skipping essential analysis or validation.
-- **Context efficiency:** inspect the smallest relevant scope; expand only when evidence requires it.
-- **Clarify intelligently:** inspect available project context before asking; ask concise questions only for consequential ambiguity.
-- **Respect existing architecture:** follow the destination project's framework, conventions, dependencies, and patterns.
-- **Preserve intent:** do not silently change business rules or user requirements.
-- **No false confidence:** never claim a test passed or behavior is equivalent unless verified.
-- **Minimal blast radius:** avoid unrelated refactors and unnecessary file changes.
-- **Explain uncertainty:** distinguish verified results, assumptions, and unverified areas.
-- **Developer control:** do not perform destructive or high-impact actions without appropriate authorization.
+- **Correctness before speed.**
+- **Context efficiency:** inspect relevant files once, record useful findings, and reuse them while they remain valid.
+- **Clarify intelligently:** inspect project context before asking consequential questions.
+- **Preserve intent:** do not silently change business rules.
+- **Respect destination architecture:** reuse existing patterns and dependencies.
+- **Minimal blast radius:** avoid unrelated edits and refactors.
+- **Evidence over claims:** report what was actually tested and what remains uncertain.
+- **Open and reusable:** publish skills with clear usage, compatibility notes, and a permissive license.
 
 ## Skill catalogue
 
 | Skill | Purpose | Status |
 |---|---|---|
-| [copythis](skills/copythis/SKILL.md) | Migrate components and features between projects while preserving behavior and adapting to destination architecture and design | Planned / first skill |
+| [copythis](skills/copythis/SKILL.md) | Cross-project component and feature migration with behavioral preservation and destination design isolation | Draft / first skill |
 
-Skill status definitions:
+Status lifecycle: **Planned → Draft → Testing → Stable**. A skill is not stable until it passes its documented scenarios in realistic projects.
 
-- **Planned:** identified but not yet implemented.
-- **Draft:** initial instructions exist; not yet fully tested.
-- **Testing:** being evaluated against realistic scenarios.
-- **Stable:** documented, tested, and reviewed against its acceptance criteria.
-- **Deprecated:** no longer recommended; migration guidance should be provided.
+## One-skill-at-a-time development
 
-## Development cadence: one skill per day
-
-We deliberately develop **one skill at a time**, aiming for one focused skill per working day. The daily cadence is a quality target, not a deadline that overrides testing.
+We aim to develop one focused skill per day, but quality gates take priority over the calendar.
 
 For each skill:
-
 1. Identify a recurring developer problem.
-2. Define scope, non-goals, triggers, and expected outcomes.
-3. Research relevant platform capabilities and compatibility requirements.
-4. Write the skill instructions and supporting references.
-5. Create realistic positive, negative, and ambiguous test scenarios.
-6. Test token/context efficiency without sacrificing correctness.
-7. Revise unclear or conflicting instructions.
-8. Document limitations and usage examples.
-9. Mark stable only after acceptance criteria are met.
+2. Define scope, triggers, non-goals, and success criteria.
+3. Research relevant agent/platform capabilities.
+4. Write concise core instructions and load-on-demand references.
+5. Create clear, ambiguous, negative, and edge-case scenarios.
+6. Test behavior and context/token efficiency.
+7. Revise contradictions and weak instructions.
+8. Publish compatibility notes and examples.
+9. Mark stable only when acceptance criteria are met.
 
-A skill that needs more than one day stays in testing. We do not ship unfinished instructions just to keep a calendar happy.
-
-## Repository structure
+## Repository layout
 
 ```text
 .
@@ -99,41 +78,51 @@ A skill that needs more than one day stays in testing. We do not ship unfinished
         └── tests/
 ```
 
-Each skill may use a smaller or larger structure depending on complexity. Do not create empty folders or unnecessary files. Keep essential instructions in `SKILL.md`; move detailed reference material into separate files when it improves clarity and context efficiency.
+Supporting files are loaded only when relevant. Avoid creating empty folders or splitting material without a clear benefit.
 
-## Platform compatibility
+## Install a skill
 
-The repository uses the Agent Skills convention where practical, with a `SKILL.md` entry point and optional supporting files.
+### Claude Code
 
-Platform installation paths and supported metadata can differ. Before publishing installation instructions, verify the current official documentation for each target agent. Do not assume every platform supports every optional field, script, or capability identically.
+Copy the skill directory into your project:
 
-Typical project-level locations include:
+```text
+.claude/skills/<skill-name>/SKILL.md
+```
 
-- Claude Code: `.claude/skills/<skill-name>/SKILL.md`
-- Google Antigravity: `.agents/skills/<skill-name>/SKILL.md`
+Or install it in the user-level skills directory supported by your Claude Code version for use across projects.
 
-These are installation examples, not a promise that every skill feature behaves identically across platforms.
+### Google Antigravity
 
-## How to use a skill
+Copy the skill directory into the workspace:
 
-1. Open the skill's directory.
-2. Read its `SKILL.md` and any referenced guidance.
-3. Install or copy it into the supported skills directory for your agent.
-4. Start a new task that clearly matches the skill's description.
-5. Review the agent's plan, code changes, test results, and limitations.
+```text
+.agents/skills/<skill-name>/SKILL.md
+```
 
-Always review generated changes before merging or deploying them.
+Antigravity also supports user-level skills in its configured global skills location. Check current official documentation for the exact path and supported metadata for your installed version.
+
+### General use
+
+1. Copy the complete skill folder, including any referenced files.
+2. Place it in the supported skill directory for your agent.
+3. Start a task matching the skill's description.
+4. Review the agent's plan, code changes, tests, and limitations.
+
+Platform support and discovery behavior can differ. We do not promise identical behavior across every agent or version.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a new skill or changing an existing one.
-
-A useful contribution should solve a real developer problem, have a narrowly defined scope, avoid duplicating another skill, and include a validation plan.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a skill or change. Contributions should solve a real problem, avoid duplication, and include realistic validation scenarios.
 
 ## Roadmap
 
-See [DEVELOPMENT_ROADMAP.md](DEVELOPMENT_ROADMAP.md) for the skill-development process and current priorities.
+See [DEVELOPMENT_ROADMAP.md](DEVELOPMENT_ROADMAP.md) for current work and future candidates.
+
+## License
+
+Released under the [MIT License](LICENSE), allowing public use, modification, and redistribution subject to its terms.
 
 ## Disclaimer
 
-These skills are engineering guidance for AI coding agents. They are not guarantees of correctness, security, regulatory compliance, or production readiness. Developers remain responsible for reviewing code, tests, permissions, and deployment decisions.
+Skills provide engineering guidance, not guarantees of correctness, security, regulatory compliance, or production readiness. Developers remain responsible for reviewing code, permissions, tests, and deployment decisions.

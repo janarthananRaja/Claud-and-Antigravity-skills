@@ -1,0 +1,63 @@
+/* Inherits React destination theme variables from src/styles/theme.css */
+.user-card-react {
+  background-color: var(--react-bg-surface);
+  border: 1px solid var(--react-border);
+  border-radius: var(--react-radius-card);
+  padding: 24px;
+  box-shadow: var(--react-shadow);
+  color: var(--react-text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.user-title-react {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--react-text-main);
+  margin-bottom: 20px;
+}
+
+.input-field-react {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--react-border);
+  border-radius: var(--react-radius-input);
+  background-color: #ffffff;
+  color: var(--react-text-main);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input-field-react:focus {
+  border-color: var(--react-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.error-text-react {
+  color: var(--react-error);
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.submit-btn-react {
+  background-color: var(--react-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--react-radius-input);
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background-color 0.15s ease;
+}
+
+.submit-btn-react:hover {
+  background-color: var(--react-primary-hover);
+}
+
+.submit-btn-react:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

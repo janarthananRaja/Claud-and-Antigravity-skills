@@ -1,0 +1,8 @@
+{
+  "name": "benchmark-scenario-2-react-destination",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node --test"
+  },
+  "type": "module"
+}

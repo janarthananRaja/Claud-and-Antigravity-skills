@@ -1,0 +1,8 @@
+{
+  "name": "benchmark-scenario-2-angular-source",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node --test"
+  },
+  "type": "module"
+}

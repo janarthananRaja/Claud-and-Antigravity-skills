@@ -1,0 +1,13 @@
+/* React Destination Styling: Modern Indigo Gradient & Rounded Slate */
+:root {
+  --react-primary: #6366f1;
+  --react-primary-hover: #4f46e5;
+  --react-bg-surface: #ffffff;
+  --react-border: #e2e8f0;
+  --react-text-main: #0f172a;
+  --react-text-muted: #64748b;
+  --react-error: #ef4444;
+  --react-radius-card: 12px;
+  --react-radius-input: 8px;
+  --react-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}

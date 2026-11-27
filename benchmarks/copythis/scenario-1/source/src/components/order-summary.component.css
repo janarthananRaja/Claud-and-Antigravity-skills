@@ -1,0 +1,42 @@
+/* Source Theme: Traditional Corporate Blue & Sharp Corners */
+.order-summary-box {
+  background-color: #2a4365;
+  color: #ffffff;
+  border: 2px solid #1a202c;
+  border-radius: 0px;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.order-header {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 8px;
+}
+
+.order-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dotted #a0aec0;
+}
+
+.coupon-section {
+  margin-top: 16px;
+  background-color: #1a365d;
+  padding: 12px;
+}
+
+.checkout-btn {
+  background-color: #e53e3e;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  cursor: pointer;
+  text-transform: uppercase;
+}

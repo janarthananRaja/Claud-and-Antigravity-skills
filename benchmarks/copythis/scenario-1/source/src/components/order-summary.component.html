@@ -1,0 +1,27 @@
+<div class="order-summary-box">
+  <div class="order-header">Order Summary (Source App)</div>
+
+  <div class="items-list">
+    <div *ngFor="let item of items" class="order-item-row">
+      <span>{{ item.name }} (x{{ item.quantity }})</span>
+      <span>${{ (item.unitPrice * item.quantity).toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <div class="coupon-section">
+    <input type="text" [(ngModel)]="couponCodeInput" placeholder="Enter coupon" [disabled]="isSubmitting" />
+    <button (click)="applyCoupon()" [disabled]="isSubmitting">Apply</button>
+    <div *ngIf="couponMessage" class="coupon-msg">{{ couponMessage }}</div>
+  </div>
+
+  <div class="totals-section">
+    <div>Subtotal: ${{ calculation.subtotal }}</div>
+    <div>Discount: -${{ calculation.discountAmount }}</div>
+    <div>Tax (18%): ${{ calculation.taxAmount }}</div>
+    <div class="grand-total">Total: ${{ calculation.total }}</div>
+  </div>
+
+  <button class="checkout-btn" (click)="submitOrder()" [disabled]="isSubmitting || items.length === 0">
+    {{ isSubmitting ? 'Processing...' : 'Complete Purchase' }}
+  </button>
+</div>

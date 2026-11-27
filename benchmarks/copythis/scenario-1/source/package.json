@@ -1,0 +1,8 @@
+{
+  "name": "benchmark-source-order-app",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node --test"
+  },
+  "type": "module"
+}

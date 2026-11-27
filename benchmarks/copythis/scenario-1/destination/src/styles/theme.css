@@ -1,0 +1,19 @@
+/* Destination Modern Emerald Theme & Curved Pill Borders */
+:root {
+  --primary-accent: #059669;
+  --secondary-accent: #10b981;
+  --bg-card: #f0fdf4;
+  --border-card: #a7f3d0;
+  --text-main: #064e3b;
+  --text-muted: #047857;
+  --radius-card: 16px;
+  --radius-btn: 9999px;
+  --shadow-card: 0 10px 15px -3px rgba(5, 150, 105, 0.1);
+}
+
+.checkout-page-container {
+  max-width: 650px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-main);
+}

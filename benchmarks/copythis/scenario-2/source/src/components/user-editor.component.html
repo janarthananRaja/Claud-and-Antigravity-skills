@@ -1,0 +1,34 @@
+<div class="user-card">
+  <div class="user-title">User Profile Editor (Angular Source)</div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" class="form-control-input" [(ngModel)]="formState.name" name="name" [disabled]="isLoading" />
+      <div *ngIf="errors.name" class="error-text">{{ errors.name }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" class="form-control-input" [(ngModel)]="formState.email" name="email" [disabled]="isLoading" />
+      <div *ngIf="errors.email" class="error-text">{{ errors.email }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Assigned Role</label>
+      <select class="form-control-input" [(ngModel)]="formState.role" name="role" [disabled]="isLoading">
+        <option value="ADMIN">ADMIN</option>
+        <option value="COACH">COACH</option>
+        <option value="STUDENT">STUDENT</option>
+      </select>
+      <div *ngIf="errors.role" class="error-text">{{ errors.role }}</div>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="isLoading">
+      {{ isLoading ? 'Saving Changes...' : 'Save Profile' }}
+    </button>
+  </form>
+
+  <div *ngIf="successMessage" class="success-banner">{{ successMessage }}</div>
+  <div *ngIf="generalError" class="error-text">{{ generalError }}</div>
+</div>

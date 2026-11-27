@@ -45,7 +45,7 @@ For every scenario, record: agent/platform and version, prompt, repository setup
 
 ## Scenario 9 — Strict evidence reuse & context ledger
 - **Setup:** A multi-step migration task requiring multiple edits, concurrent submission handling, and checks.
-- **Expected:** Maintain task context ledger; do not reread unchanged files without justification; use targeted diffs for modified files; reuse passing test results while code and environment remain unchanged.
+- **Expected:** Maintain task context ledger; do not reread unchanged files without justification; use targeted diffs for modified files; reuse passing test results while code and environment remain unchanged. When token efficiency is evaluated, compare paired baseline/optimized runs under the same task, revision, agent, model, and acceptance criteria; use actual provider/platform input and output token counts; report stage-wise and weighted overall savings; mark results Not measured when telemetry is unavailable. Never reduce verification coverage to lower token use.
 
 ## Scenario 10 — Verification integrity & truth-in-testing
 - **Setup:** Migration code achieves basic TypeScript compilation but encounters a build or unit test failure.

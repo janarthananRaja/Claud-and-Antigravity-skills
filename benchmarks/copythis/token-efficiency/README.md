@@ -63,6 +63,11 @@ Replace placeholder zero values with actual usage counts. Add one pair per repea
 
 The command exits non-zero for missing metadata, invalid counts, duplicate stages/pairs, empty stages, or zero-token baselines.
 
+Run the calculator's unit tests with:
+
+    node --test skills/copythis/scripts/token-efficiency.test.mjs
+
+
 ## Interpretation
 
 - Reduction percentage = (baseline total - optimized total) / baseline total * 100.

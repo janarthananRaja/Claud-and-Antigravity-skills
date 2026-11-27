@@ -105,6 +105,23 @@ Reuse ledger findings throughout the task. Re-read a file or re-run a check only
 
 Avoid unnecessary or tight-loop status polling. Use the environment's appropriate wait mechanism and retrieve results efficiently.
 
+### Token/context efficiency protocol
+Reduce repeated model-context work without weakening discovery, migration completeness, security, or verification:
+- Use the bounded source/destination discovery pass and maintain the task-scoped context ledger; do not repeatedly rediscover unchanged files.
+- Load context progressively: feature entry points first, then only behaviorally relevant dependencies, services, state, API contracts, and tests.
+- Prefer targeted symbols, line ranges, diffs, and compact tool summaries over dumping whole files or repositories into the prompt.
+- Keep full audit JSON and traceability matrices as repository artifacts. Give the model the summary and only the specific rows needed to resolve an issue.
+- Use deterministic scripts for repeatable counting and inventory work where available. Treat their output as an evidence index, not a substitute for semantic mapping, code review, or interaction testing. Check each script's actual extraction coverage before relying on its output.
+- Reuse passing verification results while the relevant code, configuration, dependencies, and environment remain unchanged. Rerun only checks affected by a confirmed change; never skip a required release gate to save tokens.
+- Do not repeatedly ask the model to summarize information already captured in the context ledger.
+
+#### Measuring token savings
+- Compare baseline and optimized workflows on the same task, repository revision, agent, model/version, and acceptance criteria. Change the context-efficiency workflow, not the task scope or quality bar.
+- Capture actual input and output token counts from provider usage data or agent-platform telemetry. Include repeated paired runs and report per-stage and weighted total reductions.
+- Use the token-efficiency calculator in skills/copythis/scripts/token-efficiency.mjs with an input measurement JSON file.
+- Never infer token counts from characters, lines, elapsed time, or estimated context size. If actual usage telemetry is unavailable, mark the result Not measured and describe qualitative observations separately.
+- Token reduction is an efficiency metric, not a parity or release gate. A lower token count does not prove migration correctness.
+
 ---
 
 ## 4. Inspect first, ask second

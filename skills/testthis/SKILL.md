@@ -44,9 +44,20 @@ Determine:
 
 ---
 
-## 2. Dependency Graph Discovery
+## 2. Stack & Dependency Graph Discovery
 
-Before executing tests, discover all connected dots for the target feature:
+### 2.1 Explicit Stack Discovery & Architecture Classification
+Before selecting testing tools or commands, independently discover:
+- **Languages & Versions:** e.g. TypeScript, Java, Python, Dart.
+- **Frameworks & Versions:** e.g. Angular, React, Spring Boot, FastAPI, Flutter.
+- **Build Tools & Package Managers:** e.g. Vite, Angular CLI, Maven/Gradle, `npm`/`pnpm`/`yarn`, lockfiles.
+- **Existing Test Runners:** unit, integration, and E2E runners and their configurations.
+- **Architecture Classification:** explicitly classify whether the system uses a **dedicated application backend**, **browser-to-managed-service** (e.g. Supabase/Firebase), **serverless functions**, **monolithic application**, or **microservices**.
+
+*Never assume a technology, command, package manager, or architecture. Do not claim a Node.js backend merely because the frontend uses JavaScript or TypeScript.*
+
+### 2.2 Connected Dependency Graph
+Discover all connected dots for the target feature:
 - **UI Layer:** Route, page, parent/child components, shared UI components.
 - **State & Logic:** Services, state management, validators, pipes/helpers.
 - **Data & API:** API clients, backend endpoints, DTOs, entities, database tables.
@@ -142,6 +153,11 @@ Every `TESTTHIS` run must produce **both** machine-readable JSON evidence and a 
 
 ### Human-Readable Report Structure
 - **Overall Assessment:** `Passed` | `Partial` | `Failed`
+- **Result Classification Rule:** Every test must distinguish:
+  1. **Execution Status:** Did the test actually run?
+  2. **Assertion Status:** Did the application satisfy the expected behavior?
+  3. **Observation Status:** Was any unexpected behavior discovered?
+  *A test with a failed assertion must not be reported as `Passed`. A test that could not execute must be `Not verified`. A suspected defect must not be described as confirmed.*
 - **Summary Counts:** `Passed` | `Failed` | `Warnings` | `Not Verified`
 - **Executed Commands & Exit Codes:** Exact commands run and their outcomes.
 - **Test Case IDs & Reproducible Results:** Traceable to requirements/dependencies.

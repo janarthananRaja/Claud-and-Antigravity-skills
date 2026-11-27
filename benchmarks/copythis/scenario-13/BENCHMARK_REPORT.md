@@ -86,8 +86,13 @@ Generated deterministically via `audit-engine.mjs`:
 
 ---
 
-## 5. Token Efficiency & Workflow Savings (Analysis)
-Using the **COPYTHIS Audit Engine script**:
-- **Deterministic Extraction:** Replaced conversational multi-turn file reading with a single 0.05-second automated AST/template scan.
-- **Estimated Token Savings on Audit Turn:** ~60% reduction in context window token churn (script produces a compact 30-line JSON summary instead of requiring the LLM to ingest and regurgitate 1,500 lines of HTML across multiple steps).
-- **Repetition Elimination:** Re-running verification after CSS or minor template edits requires only calling `node audit-engine.mjs`, avoiding prompt drift and hallucinated checklist approvals.
+## 5. Token Efficiency & Workflow Savings (Provisional Analysis)
+
+The audit script reduces the amount of source text that needs to be placed in model context by producing a compact JSON artifact. This is a plausible workflow optimization, but the current benchmark does **not** contain provider-reported or agent-platform token-usage records.
+
+- The previously stated ~60% context-churn reduction is an informal estimate, not a measured token reduction.
+- Earlier stage estimates such as ~93%, 100%, and ~95% are also unverified estimates and must not be reported as measured savings.
+- The script runtime (for example, 0.05 seconds if observed) is execution time and is not evidence of token savings.
+- No measured overall token-reduction percentage is claimed for Scenario 13 at this time.
+
+A reproducible measurement harness is available at skills/copythis/scripts/token-efficiency.mjs. Follow benchmarks/copythis/token-efficiency/README.md to collect paired actual input/output token counts under the same task, repository revision, agent, model, and acceptance criteria. Until that data is recorded, token efficiency status is **Not measured**.

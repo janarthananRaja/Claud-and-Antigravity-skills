@@ -121,6 +121,19 @@ Inspect existing project tooling (`package.json`, `pom.xml`, `angular.json`, etc
 | **Security Tests** | SAST, dependency scanning, authorized DAST |
 | **Comparative Tests** | Cross-project contract and behavior comparison |
 
+### 6.1 Runtime Browser Testing Protocol
+When runtime UI, E2E, visual, or comparative browser testing is in scope:
+1. **Discover Browser Tooling:** Inspect project configuration (`package.json`, Playwright/Cypress/WebdriverIO configs) and available agent browser tools (e.g. Chrome DevTools / browser subagent). Prefer existing project browser test infrastructure; never assume a browser automation package is installed.
+2. **Discover Routes, Auth & Test Data:** Identify target URLs, login requirements, role guards, and non-destructive test data dependencies before navigating.
+3. **Execute Safe Runtime Checks:**
+   - Open and inspect target applications (and reference application in comparative mode).
+   - Perform read-only navigation, tab switching, filter/pagination checks, rating selections, modal triggers, and responsive viewport checks.
+   - Test invalid, boundary, and valid form inputs **without submitting/saving** unless explicitly approved.
+4. **Capture Runtime Evidence:**
+   - Record screenshots, browser console errors, failed network requests, and observable API requests/responses (with all tokens/secrets redacted).
+   - Assign reproducible test IDs (`TT-BRW-01`, etc.) and record results in machine-readable JSON.
+5. **Evidence Honesty:** Distinguish visual/layout evidence from functional and business-logic evidence. Never claim business-logic parity from screenshots alone. Report unavailable apps or unsupported checks as `Not verified`.
+
 ---
 
 ## 7. Evidence & Reporting Contract

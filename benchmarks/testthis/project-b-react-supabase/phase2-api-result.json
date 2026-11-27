@@ -1,0 +1,17 @@
+{
+  "benchmark": "Project B — Phase 2: Read-Only API Integration (http://localhost:8025)",
+  "skill": "testthis",
+  "status": "Draft",
+  "overallAssessment": "Failed",
+  "targetPort": 8025,
+  "listeningPid": 7568,
+  "checks": [
+    { "id": "TT-B-API-01", "endpoint": "/schedule-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 107, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
+    { "id": "TT-B-API-02", "endpoint": "/attendance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 10, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
+    { "id": "TT-B-API-03", "endpoint": "/performance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
+    { "id": "TT-B-API-04", "endpoint": "/coach-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
+    { "id": "TT-B-API-05", "endpoint": "/match-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
+    { "id": "TT-B-API-06", "endpoint": "/feedback-analytics/skill-rating-summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" }
+  ],
+  "conclusion": "All 6 analytics controller groups returned HTTP 404 on http://localhost:8025 (PID 7568). The running Spring Boot instance does not have the CSK_ACADEMY-2 analytics controllers deployed."
+}

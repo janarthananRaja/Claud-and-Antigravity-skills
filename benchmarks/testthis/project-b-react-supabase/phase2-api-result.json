@@ -2,16 +2,23 @@
   "benchmark": "Project B — Phase 2: Read-Only API Integration (http://localhost:8025)",
   "skill": "testthis",
   "status": "Draft",
-  "overallAssessment": "Failed",
+  "overallAssessment": "Not verified",
   "targetPort": 8025,
   "listeningPid": 7568,
+  "runtimeTargetMismatch": true,
+  "runtimeIdentity": {
+    "pid": 7568,
+    "executable": "C:\\Program Files\\Java\\jdk-17\\bin\\java.exe",
+    "intendedBackend": "CSK_ACADEMY-2 (target/academy-0.0.1-SNAPSHOT.jar)",
+    "intendedDatabase": "jdbc:mysql://localhost:3306/academy"
+  },
   "checks": [
-    { "id": "TT-B-API-01", "endpoint": "/schedule-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 107, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
-    { "id": "TT-B-API-02", "endpoint": "/attendance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 10, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
-    { "id": "TT-B-API-03", "endpoint": "/performance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
-    { "id": "TT-B-API-04", "endpoint": "/coach-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
-    { "id": "TT-B-API-05", "endpoint": "/match-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" },
-    { "id": "TT-B-API-06", "endpoint": "/feedback-analytics/skill-rating-summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Failed", "status": "Failed" }
+    { "id": "TT-B-API-01", "endpoint": "/schedule-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 107, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" },
+    { "id": "TT-B-API-02", "endpoint": "/attendance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 10, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" },
+    { "id": "TT-B-API-03", "endpoint": "/performance-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" },
+    { "id": "TT-B-API-04", "endpoint": "/coach-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" },
+    { "id": "TT-B-API-05", "endpoint": "/match-analytics/summary", "method": "POST", "httpStatus": 404, "latencyMs": 5, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" },
+    { "id": "TT-B-API-06", "endpoint": "/feedback-analytics/skill-rating-summary", "method": "POST", "httpStatus": 404, "latencyMs": 6, "executionStatus": "Executed", "assertionStatus": "Not assessable against intended target", "observationStatus": "Unexpected runtime target on :8025 (PID 7568) returned HTTP 404", "status": "Not verified" }
   ],
-  "conclusion": "All 6 analytics controller groups returned HTTP 404 on http://localhost:8025 (PID 7568). The running Spring Boot instance does not have the CSK_ACADEMY-2 analytics controllers deployed."
+  "conclusion": "Test-environment/target-mismatch failure: HTTP requests executed against PID 7568 on :8025, which was not serving CSK_ACADEMY-2. Project B API integration remains Not verified."
 }

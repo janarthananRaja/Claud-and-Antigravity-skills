@@ -158,18 +158,25 @@ Do not remove or simplify behavior because it is inconvenient to port. Never rep
 Before writing destination code and before declaring completion, execute an explicit 11-point audit to eliminate feature drift and hallucinations:
 1. **Complete feature discovery:** inspect parent containers, nested/child views, dialogs/modals, secondary tab states, auxiliary panels, and related launcher links.
 2. **Interactive control inventory:** identify every clickable element (summary/KPI cards, filter pills, quick buttons, action dropdowns); never leave interactive controls inert or replace them with disconnected substitute components.
-3. **Structural Binding Inventory & Set Parity (The Anti-Omission & Anti-Hallucination Proof):**
-   - **Set Parity Condition:** Never rely exclusively on matching raw binding counts ($N_{source} == N_{dest}$). Count equality does not prove field matching (e.g. dropping a source field while adding an unsupported field produces an identical count). Enforce set-theoretic proof:
-     $$\text{SourceBindings} \subseteq \text{MappedDestinationBindings}$$
-     $$\text{DestinationBindings} \subseteq \text{SourceTraceable} \cup \text{ApprovedAdditions}$$
+3. **Structural Binding Inventory & Mapping Relation (The Anti-Omission & Anti-Hallucination Proof):**
+   - **Mapping Relation over Literal Set Matching:** Never rely on matching raw binding counts ($N_{source} == N_{dest}$) or literal property names, as identifiers may transform across frameworks (e.g. `battingSkill` $\to$ `battingRating` or camelCase $\to$ snake_case). Instead, establish an explicit mapping relation $M \subseteq S \times D$:
+     $$\forall s \in S_{\text{required}}, \; \exists d \in D : (s, d) \in M$$
+     $$\forall d \in D_{\text{business}}, \; \exists s \in S \text{ or approved addition supporting } d$$
    - **Structural Inventory:**
-     - Unique source binding inventory (both unique field keys and rendered control instances across conditional views).
-     - Unique destination binding inventory.
-     - Missing source bindings: $S \setminus D$ (strictly 0 allowed unless an approved exception is documented).
-     - Unexpected / hallucinated destination bindings: $D \setminus S$ (strictly 0 allowed; every destination field must have traceable source evidence).
-     - Documented exceptions for approved transformations or destination-specific infrastructure.
+     - Unique semantic source binding inventory vs. rendered control instances (accounting for conditional rendering).
+     - Unique semantic destination binding inventory vs. rendered control instances.
+     - Unmapped source bindings: $\{s \in S_{\text{required}} \mid \neg\exists d : (s,d) \in M\}$ (strictly 0 allowed unless an approved exception is documented).
+     - Unsupported / hallucinated destination bindings: $\{d \in D_{\text{business}} \mid \neg\exists s : (s,d) \in M \land d \notin \text{ApprovedAdditions}\}$ (strictly 0 allowed).
+   - **Framework-Aware Extraction Procedure:**
+     Do not rely on conversational approximations. Extract structural inventories using deterministic template/AST-aware analysis or reproducible scripts:
+     - **Template bindings & rendered controls:** (e.g. Angular `[(ngModel)]`, `formControlName`, `[value]`; React controlled inputs `value={...}`, state bindings).
+     - **Conditional & repeated controls:** (`*ngIf`, `*ngFor`; React conditional expressions and `.map()`).
+     - **Form model & state properties:** backing component state and reactive form trees.
+     - **Event handlers & effects:** (`(click)`, `(change)`, `onChange`, `onSubmit`).
+     - **Validation rules:** required flags, patterns, boundary constraints.
+     - **Submission payload mappings:** ensuring destination submission structures deliver complete data to backend APIs.
+   - **Derived-Value Traceability:** Every destination UI field must be traceable to a source field, source behavior, documented transformation, or explicitly approved destination-specific requirement. Derived values (e.g., calculated totals, completion percentages) are permitted only when their mathematical calculation and underlying source dependencies are documented. Never invent unsupported business data or speculative metrics (e.g., displaying `overallPotential` on summary cards when the source only displays it inside Step 9 evaluation).
    - **Method & Capability Cross-Check:** Extract the list of methods, getters, and computed properties from the source class/component. Cross-check against the destination implementation to achieve zero accidental behavioral omissions without requiring identical method counts or raw names across frameworks (e.g., Angular lifecycle hooks adapting to React hooks, or local helpers delegating to destination shared utilities).
-   - **Zero Hallucinated UI Fields:** Every data field, metric, card badge, or summary indicator rendered in the destination UI must have traceable source evidence. Never invent speculative metrics (e.g., displaying `overallPotential` on summary cards when the source only displays it inside Step 9 evaluation).
    - **Scale & Formula Fidelity:** Ensure calculations preserve the exact mathematical formula and numerical scale (e.g., preserving a 4-point rating scale `X.X / 4` rather than converting it to `X.X / 10`).
 4. **Interaction Parity & Control Fidelity (Separation of Binding Parity from Interaction Parity):**
    A field existing in the destination template does not prove it works as intended. For every field and control, verify:

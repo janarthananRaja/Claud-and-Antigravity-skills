@@ -2,12 +2,13 @@
   "benchmark": "Project A — CSK Academy (Overall Feedback & Talent ID)",
   "skill": "testthis",
   "status": "Draft",
-  "overallAssessment": "Partial",
+  "overallAssessment": "Failed",
   "summary": {
-    "passed": 6,
-    "failed": 0,
+    "passed": 5,
+    "failed": 1,
     "warnings": 1,
-    "notVerified": 2
+    "notVerified": 2,
+    "total": 9
   },
   "checks": [
     {
@@ -17,6 +18,9 @@
       "description": "TypeScript compilation check",
       "command": "node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json",
       "exitCode": 0,
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "observationStatus": "None",
       "status": "Passed"
     },
     {
@@ -26,6 +30,9 @@
       "description": "TypeScript compilation check",
       "command": "node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json",
       "exitCode": 0,
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "observationStatus": "None",
       "status": "Passed"
     },
     {
@@ -33,37 +40,50 @@
       "layer": "Security (SAST)",
       "project": "Both",
       "description": "Static scan for hardcoded secrets, tokens, and XSS sinks in overall-feedback",
-      "status": "Passed",
-      "note": "Static scan only; does not prove absence of runtime vulnerabilities"
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "observationStatus": "Static scan only; does not prove absence of runtime vulnerabilities",
+      "status": "Passed"
     },
     {
       "id": "TT-UNIT-01",
       "layer": "Unit / Component",
       "project": "Both",
       "description": "Existing .spec.ts unit tests for overall-feedback",
-      "status": "Not verified",
-      "reason": "No .spec.ts files exist for overall-feedback in either repository"
+      "executionStatus": "Not executed",
+      "assertionStatus": "Not verified",
+      "observationStatus": "No .spec.ts files exist for overall-feedback in either repository",
+      "status": "Not verified"
     },
     {
       "id": "TT-BRW-01",
       "layer": "E2E / Browser",
       "project": "Both",
       "description": "Availability & Auth (http://localhost:4200 & http://localhost:52373)",
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "observationStatus": "None",
       "status": "Passed"
     },
     {
       "id": "TT-BRW-02",
       "layer": "E2E / Browser",
       "project": "Both",
-      "description": "Roster View, KPI Cards, Filters & Pagination (no hallucinated Potential field on mobile)",
-      "status": "Passed",
-      "note": "Web Back to Student Roster button did not navigate back during check"
+      "description": "Roster View, KPI Cards, Filters, Pagination & Back Navigation",
+      "executionStatus": "Executed",
+      "assertionStatus": "Failed",
+      "observationStatus": "Mobile Roster passed (53 TOTAL, 2 DONE, 6 PARTIAL, 45 PENDING, no hallucinated Potential field). Web 'Back to Student Roster' failed to navigate back to roster view.",
+      "defectSeverity": "Medium",
+      "status": "Failed"
     },
     {
       "id": "TT-BRW-03",
       "layer": "E2E / Browser",
       "project": "Both",
       "description": "Step 1 Profile & Playing Role fields and boundary validation (Years playing cricket = 35 > max 30 flagged invalid)",
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "observationStatus": "None",
       "status": "Passed"
     },
     {
@@ -71,16 +91,20 @@
       "layer": "E2E / Browser",
       "project": "Both",
       "description": "Steps 2-8 4-tier rating controls & mobile stepper auto-centering",
-      "status": "Warning",
-      "note": "Web Step 2 4-tier rating verified; Mobile Next / Jump to Scout's View timed out waiting to become interactive"
+      "executionStatus": "Partial",
+      "assertionStatus": "Not verified",
+      "observationStatus": "Web Step 2 4-tier rating verified. Mobile 'Next' and 'Jump to Scout's View' timed out in browser automation; DOM inspection confirms neither button is disabled (test infrastructure synchronization issue).",
+      "status": "Warning"
     },
     {
       "id": "TT-BRW-05",
       "layer": "E2E / Browser",
       "project": "Both",
       "description": "Step 9 Review Modal, console errors, and network requests",
-      "status": "Not verified",
-      "reason": "Web Step 9 verified; Mobile Step 9 not reached due to Step 1 navigation timeout"
+      "executionStatus": "Partial",
+      "assertionStatus": "Not verified",
+      "observationStatus": "Web Step 9 verified; Mobile Step 9 not reached due to TT-BRW-04 automation timeout",
+      "status": "Not verified"
     }
   ]
 }

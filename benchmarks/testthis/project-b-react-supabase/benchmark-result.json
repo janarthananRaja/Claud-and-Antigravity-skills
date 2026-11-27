@@ -1,0 +1,68 @@
+{
+  "benchmark": "Project B — Cross-Stack Validation (SKA-React-web: React 18 + Vite + Supabase/PostgreSQL)",
+  "skill": "testthis",
+  "status": "Draft",
+  "overallAssessment": "Partial",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "warnings": 0,
+    "notVerified": 4,
+    "total": 5
+  },
+  "checks": [
+    {
+      "id": "TT-B-DISC-01",
+      "layer": "Stack Discovery",
+      "project": "SKA-React-web",
+      "description": "Discover React 18.3.1, Vite 4.3.1, TypeScript, Tailwind CSS, @supabase/supabase-js (PostgreSQL) without Angular assumptions",
+      "executionStatus": "Executed",
+      "assertionStatus": "Passed",
+      "status": "Passed"
+    },
+    {
+      "id": "TT-B-STAT-01",
+      "layer": "Static Analysis",
+      "project": "SKA-React-web",
+      "description": "TypeScript typecheck (npm run typecheck)",
+      "command": "npm run typecheck",
+      "exitCode": 1,
+      "executionStatus": "Executed",
+      "assertionStatus": "Not verified",
+      "observationStatus": "'tsc' is not recognized (node_modules not installed in SKA-React-web)",
+      "status": "Not verified"
+    },
+    {
+      "id": "TT-B-STAT-02",
+      "layer": "Static Analysis",
+      "project": "SKA-React-web",
+      "description": "ESLint check (npm run lint)",
+      "command": "npm run lint",
+      "exitCode": 1,
+      "executionStatus": "Executed",
+      "assertionStatus": "Not verified",
+      "observationStatus": "'eslint' is not recognized (node_modules not installed in SKA-React-web)",
+      "status": "Not verified"
+    },
+    {
+      "id": "TT-B-UNIT-01",
+      "layer": "Unit / Component",
+      "project": "SKA-React-web",
+      "description": "Existing .test.* / .spec.* files in src/",
+      "executionStatus": "Executed",
+      "assertionStatus": "Not verified",
+      "observationStatus": "0 test files found in SKA-React-web/src",
+      "status": "Not verified"
+    },
+    {
+      "id": "TT-B-DB-01",
+      "layer": "Database / Integration",
+      "project": "SKA-React-web",
+      "description": "Supabase / PostgreSQL runtime connectivity & schema verification",
+      "executionStatus": "Not executed",
+      "assertionStatus": "Not verified",
+      "observationStatus": "Requires isolated environment and installed dependencies; not assumed from code alone",
+      "status": "Not verified"
+    }
+  ]
+}

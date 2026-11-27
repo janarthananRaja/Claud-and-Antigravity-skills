@@ -131,7 +131,7 @@ Inventory all applicable source behavior before coding:
 2. If/else, switch, guards, and conditional rendering.
 3. Loops, filtering, sorting, and pagination (never omit pagination controls or replace with unbounded lists).
 4. Inputs, outputs, data contracts, and transformations.
-5. Form constraints, validation rules, timing, and select placeholder options (`-- Select Option --`).
+5. Form constraints, validation rules, timing, and selection placeholders (preserve source placeholders and meaningful defaults, e.g. `-- Select Option --` or destination localization conventions; do not invent artificial placeholders for every text input).
 6. API methods, payloads, headers, responses, and error semantics.
 7. Race conditions and concurrent operations.
 8. API timeouts, retries, cancellation, and duplicate submissions.
@@ -154,13 +154,13 @@ Before writing destination code and before declaring completion, execute an expl
 1. **Complete feature discovery:** inspect parent containers, nested/child views, dialogs/modals, secondary tab states, auxiliary panels, and related launcher links.
 2. **Interactive control inventory:** identify every clickable element (summary/KPI cards, filter pills, quick buttons, action dropdowns); never leave interactive controls inert or replace them with disconnected substitute components.
 3. **Member & Function Parity Verification (Anti-Hallucination & Anti-Omission Gate):**
-   - **Method Inventory & Cross-Check:** Extract the list of methods, getters, and computed properties from the source class/component. Compare against the destination component to ensure zero accidental omissions and zero invented logic.
+   - **Method & Capability Cross-Check:** Extract the list of methods, getters, and computed properties from the source class/component. Cross-check against the destination implementation to verify feature-relevant capabilities and achieve zero accidental behavioral omissions. Focus on behavioral and functional parity rather than identical raw method counts or naming across frameworks (e.g., Angular lifecycle hooks adapting to React hooks, or local helpers delegating to destination shared utilities).
    - **Zero Hallucinated UI Fields:** Every data field rendered in the destination UI (e.g. table columns, card badges, metric summaries) must be mapped 1:1 to an actual field in the source view. **Never invent speculative fields** (e.g., displaying `overallPotential` on summary cards when the source only displays it inside Step 9 evaluation).
    - **Scale & Formula Fidelity:** Ensure calculations preserve the exact mathematical formula and numerical scale (e.g., preserving a 4-point rating scale `X.X / 4` rather than converting it to `X.X / 10`).
 4. **Pagination & data boundaries:** verify whether the source slices data into pages or batches. Port pagination mechanics, page size options, page numbers, and boundary indicators faithfully.
 5. **Stepper & viewport behavior:** for multi-step wizards or horizontal steppers, ensure step transitions maintain active step visibility in constrained viewports (e.g. auto-centering active steps via smooth scrolling).
 6. **Confirmation & recovery states:** preserve all pre-submission gates, missing-field review dialogs, and final confirmation warnings before committing persistent changes.
-7. **Form placeholders & validation prompts:** ensure all selection dropdowns and text inputs provide clear, explicit default placeholder options (e.g. `-- Select Option --`).
+7. **Form placeholders & validation prompts:** preserve placeholders and meaningful default options present in the source view (e.g. `-- Select Option --` or destination localization conventions) and required workflow prompts; do not invent artificial placeholder text for plain inputs that lack them in the source.
 8. **Page-level structure & headers:** verify that app shell headers, titles, breadcrumbs, and back navigation seamlessly reflect the active feature.
 9. **Routes & role-based navigation:** register new routes across all destination navigation surfaces: route modules, role guards, header title dictionaries, and quick-link hubs for all permitted roles.
 10. **Responsive behavior:** ensure the destination layout adapts to mobile or desktop screen constraints without dropping core functional workflows.

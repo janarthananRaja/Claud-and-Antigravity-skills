@@ -1,6 +1,9 @@
 # COPYTHIS — Scenario test plan
 
-**Current status:** Draft. Initial benchmark and testing pending.
+**Current status:** Draft.
+- **Overall skill:** Draft.
+- **Scenario 1:** Initial controlled benchmark passed with limitations.
+- **Scenario 13:** Pending execution.
 
 Tests may be conducted in real production/development repositories or inside isolated, controlled benchmark repositories (e.g. `benchmarks/copythis/scenario-X/`). Passing a controlled fixture serves as an initial qualification benchmark, but is not sufficient alone for declaring COPYTHIS stable. Real-project validation across supported platforms is required before release.
 
@@ -58,7 +61,7 @@ For every scenario, record: agent/platform and version, prompt, repository setup
 
 ## Scenario 13 — Feature completeness & interaction parity audit
 - **Setup:** Source feature contains multi-surface interactive elements (e.g., clickable dashboard KPI filter cards, data pagination with page sizes, multi-step horizontal wizard, confirmation/review modals, form control placeholders, shell header title mappings, and role-based quick-link launch points).
-- **Expected:** Perform a mandatory 10-point Feature Completeness & Interaction Parity Audit; inventory all parent/child views, interactive filters, modal gates, and navigation hubs; implement full behavioral parity without dropping pagination or replacing card filters with duplicate tabs; auto-center active steps into viewport on constrained/mobile displays; register routes and titles across destination app shell and quick-links for all authorized roles; derive verification checks confirming interactive controls.
+- **Expected:** Perform a mandatory 11-point Feature Completeness & Interaction Parity Audit; inventory all parent/child views, interactive filters, modal gates, and navigation hubs; implement full behavioral parity without dropping pagination or replacing card filters with duplicate tabs; auto-center active steps into viewport on constrained/mobile displays; register routes and titles across destination app shell and quick-links for all authorized roles; derive verification checks confirming interactive controls.
 
 ---
 

@@ -147,24 +147,46 @@ Inventory all applicable source behavior before coding:
 18. Lifecycle hooks, cleanup, and background tasks.
 19. Accessibility requirements, focus management, ARIA landmarks, and keyboard interactions where applicable.
 
-Do not remove or simplify behavior because it is inconvenient to port. Never replace source stat-card click filters with duplicate tabs or remove pagination simply because the target is a smaller screen.
+Do not remove or simplify behavior because it is inconvenient to port. Never replace source stat-card click filters with duplicate tabs or remove pagination simply because the target is a smaller screen. Responsive redesign must adapt presentation and architecture to the destination platform, but must NEVER imply functional scope reduction.
+
+### The Three Pillars of COPYTHIS
+1. **Completeness:** Nothing required is silently omitted. Full functional equivalence is preserved.
+2. **Traceability:** Nothing unsupported is invented. Every displayed field, card badge, or metric has verifiable source evidence or an explicitly approved requirement.
+3. **Behavioral Parity:** Everything migrated behaves and functions as intended, including control types, rating scales, event triggers, validation, and submission payloads.
 
 ### Mandatory Feature Completeness & Interaction Parity Audit
 Before writing destination code and before declaring completion, execute an explicit 11-point audit to eliminate feature drift and hallucinations:
 1. **Complete feature discovery:** inspect parent containers, nested/child views, dialogs/modals, secondary tab states, auxiliary panels, and related launcher links.
 2. **Interactive control inventory:** identify every clickable element (summary/KPI cards, filter pills, quick buttons, action dropdowns); never leave interactive controls inert or replace them with disconnected substitute components.
-3. **Member & Function Parity Verification (Anti-Hallucination & Anti-Omission Gate):**
-   - **Method & Capability Cross-Check:** Extract the list of methods, getters, and computed properties from the source class/component. Cross-check against the destination implementation to verify feature-relevant capabilities and achieve zero accidental behavioral omissions. Focus on behavioral and functional parity rather than identical raw method counts or naming across frameworks (e.g., Angular lifecycle hooks adapting to React hooks, or local helpers delegating to destination shared utilities).
-   - **Zero Hallucinated UI Fields:** Every data field rendered in the destination UI (e.g. table columns, card badges, metric summaries) must be mapped 1:1 to an actual field in the source view. **Never invent speculative fields** (e.g., displaying `overallPotential` on summary cards when the source only displays it inside Step 9 evaluation).
+3. **Structural Binding Inventory & Set Parity (The Anti-Omission & Anti-Hallucination Proof):**
+   - **Set Parity Condition:** Never rely exclusively on matching raw binding counts ($N_{source} == N_{dest}$). Count equality does not prove field matching (e.g. dropping a source field while adding an unsupported field produces an identical count). Enforce set-theoretic proof:
+     $$\text{SourceBindings} \subseteq \text{MappedDestinationBindings}$$
+     $$\text{DestinationBindings} \subseteq \text{SourceTraceable} \cup \text{ApprovedAdditions}$$
+   - **Structural Inventory:**
+     - Unique source binding inventory (both unique field keys and rendered control instances across conditional views).
+     - Unique destination binding inventory.
+     - Missing source bindings: $S \setminus D$ (strictly 0 allowed unless an approved exception is documented).
+     - Unexpected / hallucinated destination bindings: $D \setminus S$ (strictly 0 allowed; every destination field must have traceable source evidence).
+     - Documented exceptions for approved transformations or destination-specific infrastructure.
+   - **Method & Capability Cross-Check:** Extract the list of methods, getters, and computed properties from the source class/component. Cross-check against the destination implementation to achieve zero accidental behavioral omissions without requiring identical method counts or raw names across frameworks (e.g., Angular lifecycle hooks adapting to React hooks, or local helpers delegating to destination shared utilities).
+   - **Zero Hallucinated UI Fields:** Every data field, metric, card badge, or summary indicator rendered in the destination UI must have traceable source evidence. Never invent speculative metrics (e.g., displaying `overallPotential` on summary cards when the source only displays it inside Step 9 evaluation).
    - **Scale & Formula Fidelity:** Ensure calculations preserve the exact mathematical formula and numerical scale (e.g., preserving a 4-point rating scale `X.X / 4` rather than converting it to `X.X / 10`).
-4. **Pagination & data boundaries:** verify whether the source slices data into pages or batches. Port pagination mechanics, page size options, page numbers, and boundary indicators faithfully.
-5. **Stepper & viewport behavior:** for multi-step wizards or horizontal steppers, ensure step transitions maintain active step visibility in constrained viewports (e.g. auto-centering active steps via smooth scrolling).
-6. **Confirmation & recovery states:** preserve all pre-submission gates, missing-field review dialogs, and final confirmation warnings before committing persistent changes.
-7. **Form placeholders & validation prompts:** preserve placeholders and meaningful default options present in the source view (e.g. `-- Select Option --` or destination localization conventions) and required workflow prompts; do not invent artificial placeholder text for plain inputs that lack them in the source.
-8. **Page-level structure & headers:** verify that app shell headers, titles, breadcrumbs, and back navigation seamlessly reflect the active feature.
-9. **Routes & role-based navigation:** register new routes across all destination navigation surfaces: route modules, role guards, header title dictionaries, and quick-link hubs for all permitted roles.
-10. **Responsive behavior:** ensure the destination layout adapts to mobile or desktop screen constraints without dropping core functional workflows.
-11. **Parity verification:** verify each audited item against the destination implementation before claiming task completion.
+4. **Interaction Parity & Control Fidelity (Separation of Binding Parity from Interaction Parity):**
+   A field existing in the destination template does not prove it works as intended. For every field and control, verify:
+   - Correct source property binding.
+   - Correct control type (e.g. segmented rating controls, datepickers, multi-select pills, number inputs; never substitute structured controls with generic dropdowns).
+   - Correct options, choices, and rating scales (e.g. preserving 4-tier L1–L4 + NS scales).
+   - Correct validation rules, constraints, and error messages.
+   - Correct event/change/update handling (e.g. recalculating progress or dependent state upon change).
+   - Correct persistence, serialization, or submission payload mapping.
+   - Correct visibility conditions and conditional rendering guards (`*ngIf`, `v-if`).
+5. **Pagination & data boundaries:** verify whether the source slices data into pages or batches. Port pagination mechanics, page size options, page numbers, and boundary indicators faithfully.
+6. **Stepper & viewport behavior:** for multi-step wizards or horizontal steppers, ensure step transitions maintain active step visibility in constrained viewports (e.g. auto-centering active steps via smooth scrolling).
+7. **Confirmation & recovery states:** preserve all pre-submission gates, missing-field review dialogs, and final confirmation warnings before committing persistent changes.
+8. **Form placeholders & validation prompts:** preserve placeholders and meaningful default options present in the source view (e.g. `-- Select Option --` or destination localization conventions) and required workflow prompts; do not invent artificial placeholder text for plain inputs that lack them in the source.
+9. **Page-level structure & headers:** verify that app shell headers, titles, breadcrumbs, and back navigation seamlessly reflect the active feature.
+10. **Routes & role-based navigation:** register new routes across all destination navigation surfaces: route modules, role guards, header title dictionaries, and quick-link hubs for all permitted roles.
+11. **Responsive behavior & platform adaptation:** ensure the destination layout adapts to mobile or desktop screen constraints without dropping core functional workflows or form controls. Verify each audited item against the destination implementation before claiming task completion.
 
 ### Defect handling
 Never silently reproduce a suspected defect, and never silently correct it. Describe observed behavior and the likely issue. If it changes business outcomes, ask whether to preserve exact behavior or apply a correction. Record approved deviations and list unapproved improvements separately.
@@ -196,10 +218,17 @@ Make the smallest necessary set of changes. Avoid unrelated refactoring, duplica
 
 Derive destination tests directly from the agreed behavior inventory. Inspect existing source tests and record pre-existing failures separately.
 
+### The 4-Layer Release Gate (Audits as Release Gates, Not Build Claims)
+A passing build or compilation check cannot override a failed completeness audit. Never conflate compilation with functional equivalence. The migration must pass four independent gates before release:
+1. **Build Gate:** Does the destination application compile cleanly without syntax, type, or linting errors? (e.g. `tsc --noEmit`, framework build).
+2. **Completeness Audit Gate:** Are all required source fields, data bindings, and views represented? ($\text{SourceBindings} \subseteq \text{MappedDestinationBindings}$, zero unmapped source fields).
+3. **Behavior & Interaction Audit Gate:** Do destination controls have matching input types, rating scales, event triggers, validation, and submission behavior?
+4. **Traceability Audit Gate:** Is every destination field supported by source evidence or explicitly approved additions? ($\text{DestinationBindings} \subseteq \text{SourceTraceable} \cup \text{ApprovedAdditions}$, zero hallucinated metrics).
+
 **Rules for verification integrity:**
 - **Inspect project scripts:** do not prescribe outdated or hardcoded build commands. Inspect the destination project's configuration, package manifests, and scripts to select the appropriate build and test commands.
 - **A partial check never substitutes for a complete check.** (e.g. A TypeScript compilation check `tsc --noEmit` is NOT equivalent to a framework production build or full test suite).
-- Track each verification command and result independently.
+- Track each verification command and result independently across all four release gates.
 - Investigate failed builds and test failures before declaring completion.
 - Never overwrite a failed verification status with an unrelated successful check.
 - Never claim 100% functional parity without evidence for every applicable requirement.
@@ -221,13 +250,19 @@ A successful build is not proof of behavioral parity. Never claim tests passed i
 Provide an evidence-based report separating:
 1. **Migration summary:** source, destination, feature, and mode.
 2. **Files:** created, modified, and reused files.
-3. **Verified behavior:** behaviors confirmed by executed tests/checks.
-4. **Partially verified behavior:** behaviors with partial evidence and documented gaps.
-5. **Unverified behavior:** untested areas or unverified edge cases.
-6. **Pre-existing issues:** bugs/test failures present in source/destination before migration.
-7. **Migration-introduced issues & fixes:** issues caught and remediated during migration.
-8. **Approved deviations:** intentional differences approved by the developer.
-9. **Suggested improvements:** recommended enhancements not implemented in this scope.
+3. **Feature Traceability Matrix:**
+   | Source Field / Control | Destination Field / Control | Control Type & Scale | Behavior & Events | Status |
+   | :--- | :--- | :--- | :--- | :--- |
+   | `battingSkill` | `battingSkill` | L1–L4 / NS segmented control | Click update, progress re-eval | Verified |
+   | `playerExperience` | `playerExperience` | Number input | Validation & bounds | Verified |
+   The migration cannot be declared complete while applicable rows are missing, partially mapped, unverified, or hallucinated.
+4. **Verified behavior:** behaviors confirmed by executed tests/checks across all 4 release gates.
+5. **Partially verified behavior:** behaviors with partial evidence and documented gaps.
+6. **Unverified behavior:** untested areas or unverified edge cases.
+7. **Pre-existing issues:** bugs/test failures present in source/destination before migration.
+8. **Migration-introduced issues & fixes:** issues caught and remediated during migration.
+9. **Approved deviations:** intentional differences approved by the developer.
+10. **Suggested improvements:** recommended enhancements not implemented in this scope.
 
 ---
 

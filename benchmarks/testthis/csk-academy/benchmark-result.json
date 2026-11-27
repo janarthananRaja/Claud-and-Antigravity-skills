@@ -1,0 +1,86 @@
+{
+  "benchmark": "Project A — CSK Academy (Overall Feedback & Talent ID)",
+  "skill": "testthis",
+  "status": "Draft",
+  "overallAssessment": "Partial",
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "warnings": 1,
+    "notVerified": 2
+  },
+  "checks": [
+    {
+      "id": "TT-STAT-01",
+      "layer": "Static Analysis",
+      "project": "CSK_ACADEMY_ANGULAR",
+      "description": "TypeScript compilation check",
+      "command": "node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json",
+      "exitCode": 0,
+      "status": "Passed"
+    },
+    {
+      "id": "TT-STAT-02",
+      "layer": "Static Analysis",
+      "project": "superkingsacademy-app/ska-app",
+      "description": "TypeScript compilation check",
+      "command": "node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json",
+      "exitCode": 0,
+      "status": "Passed"
+    },
+    {
+      "id": "TT-SEC-01",
+      "layer": "Security (SAST)",
+      "project": "Both",
+      "description": "Static scan for hardcoded secrets, tokens, and XSS sinks in overall-feedback",
+      "status": "Passed",
+      "note": "Static scan only; does not prove absence of runtime vulnerabilities"
+    },
+    {
+      "id": "TT-UNIT-01",
+      "layer": "Unit / Component",
+      "project": "Both",
+      "description": "Existing .spec.ts unit tests for overall-feedback",
+      "status": "Not verified",
+      "reason": "No .spec.ts files exist for overall-feedback in either repository"
+    },
+    {
+      "id": "TT-BRW-01",
+      "layer": "E2E / Browser",
+      "project": "Both",
+      "description": "Availability & Auth (http://localhost:4200 & http://localhost:52373)",
+      "status": "Passed"
+    },
+    {
+      "id": "TT-BRW-02",
+      "layer": "E2E / Browser",
+      "project": "Both",
+      "description": "Roster View, KPI Cards, Filters & Pagination (no hallucinated Potential field on mobile)",
+      "status": "Passed",
+      "note": "Web Back to Student Roster button did not navigate back during check"
+    },
+    {
+      "id": "TT-BRW-03",
+      "layer": "E2E / Browser",
+      "project": "Both",
+      "description": "Step 1 Profile & Playing Role fields and boundary validation (Years playing cricket = 35 > max 30 flagged invalid)",
+      "status": "Passed"
+    },
+    {
+      "id": "TT-BRW-04",
+      "layer": "E2E / Browser",
+      "project": "Both",
+      "description": "Steps 2-8 4-tier rating controls & mobile stepper auto-centering",
+      "status": "Warning",
+      "note": "Web Step 2 4-tier rating verified; Mobile Next / Jump to Scout's View timed out waiting to become interactive"
+    },
+    {
+      "id": "TT-BRW-05",
+      "layer": "E2E / Browser",
+      "project": "Both",
+      "description": "Step 9 Review Modal, console errors, and network requests",
+      "status": "Not verified",
+      "reason": "Web Step 9 verified; Mobile Step 9 not reached due to Step 1 navigation timeout"
+    }
+  ]
+}

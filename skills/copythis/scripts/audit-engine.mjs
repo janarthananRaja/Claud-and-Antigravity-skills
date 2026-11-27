@@ -11,6 +11,19 @@
  * - Unsupported / hallucinated destination fields: { d \in D | \neg\exists s: (s,d) \in M and d \notin ApprovedAdditions }
  * - Method & capability cross-check under method mapping M_methods
  * - Feature Traceability Matrix
+ * 
+ * EXTRACTION BOUNDARIES & SUPPORTED SYNTAX:
+ * Supported:
+ * - Standard TS class method declarations: [async|public|private|protected] [get|set] name(args): ReturnType {
+ * - Class property arrow functions: name = async (args) => { ... }
+ * - Angular [(ngModel)], [ngModel], and formModel.<key> template bindings
+ * - Segmented rating button key dispatches (e.g. setScore('key', val))
+ * - Standard HTML/Ionic control classification (select, textarea, checkbox, radio, date, number, 4-tier rating)
+ * 
+ * Known Limitations (Requires Manual or AST-Compiler Inspection):
+ * - Argument lists spanning multiple line breaks before opening brace
+ * - Nested inner closures / helper functions within method bodies
+ * - Payload schema equivalence & runtime side effects (requires Behavioral Parity Integration tests)
  */
 
 import fs from 'fs';
@@ -48,22 +61,30 @@ export function extractBindings(content) {
 
 export function extractMethods(tsContent) {
   const methods = new Set();
-  // Match method definitions anchored at line start inside TS class bodies:
-  // e.g.   methodName(arg: type): void {
-  // Avoid inline calls like foo.substring(0, 10) or statements
-  const methodRegex = /^\s*(?:public\s+|private\s+|protected\s+|async\s+)*(?:get\s+|set\s+)?([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\([^)]*\)\s*(?::\s*[^{;\n]+)?\s*\{/gm;
-  let match;
   const keywords = new Set([
     'constructor', 'ngOnInit', 'ngOnDestroy', 'ngAfterViewInit', 'ngOnChanges',
     'if', 'else', 'switch', 'case', 'for', 'while', 'do', 'catch', 'finally', 'try', 'return', 'with'
   ]);
 
-  while ((match = methodRegex.exec(tsContent)) !== null) {
+  // 1. Standard class methods: methodName(args): ReturnType {
+  const standardMethodRegex = /^\s*(?:public\s+|private\s+|protected\s+|async\s+)*(?:get\s+|set\s+)?([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\([^)]*\)\s*(?::\s*[^{;\n]+)?\s*\{/gm;
+  let match;
+  while ((match = standardMethodRegex.exec(tsContent)) !== null) {
     const name = match[1];
     if (!keywords.has(name) && !/^\d+$/.test(name)) {
       methods.add(name);
     }
   }
+
+  // 2. Class property arrow functions: methodName = (args) => {
+  const arrowMethodRegex = /^\s*(?:public\s+|private\s+|protected\s+|readonly\s+)*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*=\s*(?:async\s*)?\([^)]*\)\s*(?:=>|:\s*[^{=;\n]+=>)/gm;
+  while ((match = arrowMethodRegex.exec(tsContent)) !== null) {
+    const name = match[1];
+    if (!keywords.has(name) && !/^\d+$/.test(name)) {
+      methods.add(name);
+    }
+  }
+
   return Array.from(methods).sort();
 }
 

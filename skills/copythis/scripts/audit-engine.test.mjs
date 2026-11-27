@@ -18,18 +18,28 @@ test('extractBindings extracts formModel properties and rating keys', () => {
   ]);
 });
 
-test('extractMethods extracts valid TS methods while excluding keywords and numbers', () => {
+test('extractMethods extracts valid TS methods, arrow functions, and getters/setters', () => {
   const sampleTs = `
     export class SampleComponent {
+      get activeCount(): number { return 10; }
+      set stepValue(val: number) { this._val = val; }
       calculateProgress(): number { return 100; }
       async submitData() { return true; }
+      arrowHandler = async (e: Event) => { console.log(e); }
       private helperMethod(val: string) {}
       if (condition) {}
       switch (val) { case 0: { break; } }
     }
   `;
   const methods = extractMethods(sampleTs);
-  assert.deepEqual(methods, ['calculateProgress', 'helperMethod', 'submitData']);
+  assert.deepEqual(methods, [
+    'activeCount',
+    'arrowHandler',
+    'calculateProgress',
+    'helperMethod',
+    'stepValue',
+    'submitData'
+  ]);
 });
 
 test('extractControlTypes detects rating controls, dropdowns, and text areas', () => {

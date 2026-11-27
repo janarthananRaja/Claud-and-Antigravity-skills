@@ -3,7 +3,7 @@
 **Current status:** Draft.
 - **Overall skill:** Draft.
 - **Scenario 1:** Initial controlled benchmark passed with limitations.
-- **Scenario 13:** Pending execution.
+- **Scenario 13:** Passed (real-world multi-step evaluation benchmark, 114/114 bindings mapped, 4-tier controls preserved, 0 hallucinations).
 
 Tests may be conducted in real production/development repositories or inside isolated, controlled benchmark repositories (e.g. `benchmarks/copythis/scenario-X/`). Passing a controlled fixture serves as an initial qualification benchmark, but is not sufficient alone for declaring COPYTHIS stable. Real-project validation across supported platforms is required before release.
 

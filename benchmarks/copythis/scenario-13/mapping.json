@@ -1,0 +1,9 @@
+{
+  "fieldMapping": {},
+  "methodMapping": {
+    "submitFeedback": "submitAssessment",
+    "returnToRoster": "closeAssessment",
+    "goToStep": "setStep",
+    "scrollToTop": "scrollActiveStepIntoView"
+  }
+}

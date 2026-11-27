@@ -30,7 +30,7 @@
 ---
 
 ## 3. Structural Binding Inventory & Extraction Summary
-Generated deterministically via `audit-engine.mjs`:
+Generated deterministically via `audit-engine.mjs` using mapping relation $M$:
 
 ```json
 {
@@ -38,24 +38,34 @@ Generated deterministically via `audit-engine.mjs`:
     "source": {
       "rawInstanceCount": 408,
       "uniqueFieldCount": 114,
-      "methodCount": 58
+      "methodCount": 55
     },
     "destination": {
       "rawInstanceCount": 405,
       "uniqueFieldCount": 114,
-      "methodCount": 58
+      "methodCount": 56
     },
     "parity": {
       "unmappedSourceCount": 0,
       "unmappedSourceKeys": [],
       "unsupportedDestCount": 0,
       "unsupportedDestKeys": [],
+      "unmappedMethodsCount": 0,
+      "unmappedMethods": [],
       "completenessGatePassed": true,
-      "traceabilityGatePassed": true
+      "traceabilityGatePassed": true,
+      "methodParityPassed": true
     }
   }
 }
 ```
+
+### Architectural Method Mapping ($M_{\text{methods}}$)
+Source methods adapted to destination architecture conventions:
+- `submitFeedback` $\mapsto$ `submitAssessment`
+- `returnToRoster` $\mapsto$ `closeAssessment`
+- `goToStep` $\mapsto$ `setStep`
+- `scrollToTop` $\mapsto$ `scrollActiveStepIntoView`
 
 ---
 

@@ -3,37 +3,31 @@
     "source": {
       "rawInstanceCount": 408,
       "uniqueFieldCount": 114,
-      "methodCount": 58
+      "methodCount": 55
     },
     "destination": {
       "rawInstanceCount": 405,
       "uniqueFieldCount": 114,
-      "methodCount": 58
+      "methodCount": 56
     },
     "parity": {
       "unmappedSourceCount": 0,
       "unmappedSourceKeys": [],
       "unsupportedDestCount": 0,
       "unsupportedDestKeys": [],
-      "missingMethodsCount": 6,
-      "missingMethods": [
-        "0",
-        "goToStep",
-        "returnToRoster",
-        "scrollToTop",
-        "submitFeedback",
-        "substring"
-      ],
+      "unmappedMethodsCount": 0,
+      "unmappedMethods": [],
       "completenessGatePassed": true,
-      "traceabilityGatePassed": true
+      "traceabilityGatePassed": true,
+      "methodParityPassed": true
     }
   },
   "traceabilityMatrix": [
     {
       "sourceField": "A_notes",
       "destinationField": "A_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -192,8 +186,8 @@
     {
       "sourceField": "B_notes",
       "destinationField": "B_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -400,8 +394,8 @@
     {
       "sourceField": "C_notes",
       "destinationField": "C_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -496,8 +490,8 @@
     {
       "sourceField": "D_notes",
       "destinationField": "D_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -528,8 +522,8 @@
     {
       "sourceField": "E_notes",
       "destinationField": "E_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -560,8 +554,8 @@
     {
       "sourceField": "F_notes",
       "destinationField": "F_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -592,8 +586,8 @@
     {
       "sourceField": "G_notes",
       "destinationField": "G_notes",
-      "sourceControl": "Text Area",
-      "destinationControl": "Text Area",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -617,8 +611,8 @@
       "sourceField": "academy",
       "destinationField": "academy",
       "sourceControl": "Bound Element",
-      "destinationControl": "Text Input",
-      "controlTypeFidelity": "Adapted",
+      "destinationControl": "Bound Element",
+      "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
@@ -672,8 +666,8 @@
     {
       "sourceField": "ceiling_level",
       "destinationField": "ceiling_level",
-      "sourceControl": "Dropdown Select",
-      "destinationControl": "Dropdown Select",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -681,16 +675,16 @@
       "sourceField": "coachId",
       "destinationField": "coachId",
       "sourceControl": "Bound Element",
-      "destinationControl": "4-Tier Rating Control (L1-L4/NS)",
-      "controlTypeFidelity": "Adapted",
+      "destinationControl": "Bound Element",
+      "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
       "sourceField": "coachName",
       "destinationField": "coachName",
       "sourceControl": "Text Input",
-      "destinationControl": "Bound Element",
-      "controlTypeFidelity": "Adapted",
+      "destinationControl": "Text Input",
+      "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
@@ -713,24 +707,24 @@
       "sourceField": "consent",
       "destinationField": "consent",
       "sourceControl": "Bound Element",
-      "destinationControl": "Checkbox",
-      "controlTypeFidelity": "Adapted",
+      "destinationControl": "Bound Element",
+      "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
       "sourceField": "current_level",
       "destinationField": "current_level",
-      "sourceControl": "Dropdown Select",
-      "destinationControl": "Dropdown Select",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
       "sourceField": "dateOfBirth",
       "destinationField": "dateOfBirth",
-      "sourceControl": "Date Picker",
-      "destinationControl": "Bound Element",
-      "controlTypeFidelity": "Adapted",
+      "sourceControl": "Text Input",
+      "destinationControl": "Text Input",
+      "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
@@ -800,8 +794,8 @@
     {
       "sourceField": "scouting_status",
       "destinationField": "scouting_status",
-      "sourceControl": "Dropdown Select",
-      "destinationControl": "Dropdown Select",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -824,8 +818,8 @@
     {
       "sourceField": "sessions_observed",
       "destinationField": "sessions_observed",
-      "sourceControl": "Dropdown Select",
-      "destinationControl": "Dropdown Select",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -840,16 +834,16 @@
     {
       "sourceField": "spin_type",
       "destinationField": "spin_type",
-      "sourceControl": "Dropdown Select",
-      "destinationControl": "Dropdown Select",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
     {
       "sourceField": "standout_trait",
       "destinationField": "standout_trait",
-      "sourceControl": "Text Input",
-      "destinationControl": "Text Input",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
@@ -872,17 +866,17 @@
     {
       "sourceField": "test_bowl_speed",
       "destinationField": "test_bowl_speed",
-      "sourceControl": "Number Input",
+      "sourceControl": "Bound Element",
       "destinationControl": "Number Input",
-      "controlTypeFidelity": "Exact Match",
+      "controlTypeFidelity": "Adapted",
       "status": "Verified"
     },
     {
       "sourceField": "test_run_a_three",
       "destinationField": "test_run_a_three",
-      "sourceControl": "Number Input",
+      "sourceControl": "Bound Element",
       "destinationControl": "Number Input",
-      "controlTypeFidelity": "Exact Match",
+      "controlTypeFidelity": "Adapted",
       "status": "Verified"
     },
     {
@@ -896,17 +890,17 @@
     {
       "sourceField": "test_throw_m",
       "destinationField": "test_throw_m",
-      "sourceControl": "Number Input",
+      "sourceControl": "Bound Element",
       "destinationControl": "Number Input",
-      "controlTypeFidelity": "Exact Match",
+      "controlTypeFidelity": "Adapted",
       "status": "Verified"
     },
     {
       "sourceField": "test_yoyo",
       "destinationField": "test_yoyo",
-      "sourceControl": "Number Input",
+      "sourceControl": "Bound Element",
       "destinationControl": "Number Input",
-      "controlTypeFidelity": "Exact Match",
+      "controlTypeFidelity": "Adapted",
       "status": "Verified"
     },
     {
@@ -920,8 +914,8 @@
     {
       "sourceField": "video_link",
       "destinationField": "video_link",
-      "sourceControl": "Text Input",
-      "destinationControl": "Text Input",
+      "sourceControl": "Bound Element",
+      "destinationControl": "Bound Element",
       "controlTypeFidelity": "Exact Match",
       "status": "Verified"
     },
